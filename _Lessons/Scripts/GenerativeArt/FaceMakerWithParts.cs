@@ -1,0 +1,104 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FaceMakerWithParts : MonoBehaviour
+{
+    public Transform noses;
+    public Transform eyes;
+    public Transform mouths;
+
+    public float mouthHeightMin;
+    public float mouthHeightMax;
+
+    public float mouthSizeMin;
+    public float mouthSizeMax;
+
+    public float noseSizeMin;
+    public float noseSizeMax;
+
+    public float eyeSizeMin;
+    public float eyeSizeMax;
+
+    public float eyeSeparationMin;
+    public float eyeSeparationMax;
+
+    public float eyeRotationMin;
+    public float eyeRotationMax;
+
+    public bool rebuild;
+
+    GameObject LeftEye;
+    GameObject RightEye;
+    GameObject Nose;
+    GameObject Mouth;
+
+   
+    void Update()
+    {
+        if(rebuild){
+            MakeFace();
+            rebuild = false;
+        }
+    }
+
+    void MakeFace(){
+        
+        if(LeftEye!=null){
+            Destroy(LeftEye);
+            Destroy(RightEye);
+            Destroy(Nose);
+            Destroy(Mouth);
+        }
+
+        LeftEye = new GameObject();
+        LeftEye.transform.parent = this.transform;
+        LeftEye.transform.localPosition = Vector3.zero;
+        LeftEye.transform.localEulerAngles = Vector3.zero;
+        LeftEye.name = "LeftEye";
+
+        RightEye = new GameObject();
+        RightEye.transform.parent = this.transform;
+        RightEye.transform.localPosition = Vector3.zero;
+        RightEye.transform.localEulerAngles = Vector3.zero;
+        RightEye.name = "RightEye";
+
+        Nose = new GameObject();
+        Nose.transform.parent = this.transform;
+        Nose.transform.localPosition = Vector3.zero;
+        Nose.transform.localEulerAngles = Vector3.zero;
+        Nose.name = "Nose";
+
+        Mouth = new GameObject();
+        Mouth.transform.parent = this.transform;
+        Mouth.transform.localPosition = Vector3.zero;
+        Mouth.transform.localEulerAngles = Vector3.zero;
+        Mouth.name = "Mouth";
+
+        int randomEye = Random.Range(0, eyes.childCount);
+        Transform t = Instantiate(eyes.GetChild(randomEye),LeftEye.transform);
+        float scale = Random.Range(eyeSizeMin, eyeSizeMax);
+        float sep = Random.Range(eyeSeparationMin, eyeSeparationMax);
+        float rot = Random.Range(eyeRotationMin, eyeRotationMax);
+        LeftEye.transform.localScale = new Vector3(scale, scale, scale);
+        LeftEye.transform.localPosition = new Vector3(sep, .25f, .5f);
+        LeftEye.transform.localEulerAngles = new Vector3(0, 0, rot);
+
+        t = Instantiate(eyes.GetChild(randomEye),RightEye.transform);
+        RightEye.transform.localScale = new Vector3(scale, scale, scale);
+        RightEye.transform.localPosition = new Vector3(-sep, .25f, .5f);
+        RightEye.transform.localEulerAngles = new Vector3(0, 0, -rot);
+
+        t = Instantiate(noses.GetChild(Random.Range(0, noses.childCount)),Nose.transform);
+        scale = Random.Range(noseSizeMin, noseSizeMax);
+        Nose.transform.localScale = new Vector3(scale, scale, scale);
+        Nose.transform.localPosition = new Vector3(0, 0, .5f);
+
+        t = Instantiate(mouths.GetChild(Random.Range(0, mouths.childCount)),Mouth.transform);
+        scale = Random.Range(mouthSizeMin, mouthSizeMax);
+        float pos = Random.Range(mouthHeightMin, mouthHeightMax);
+        Mouth.transform.localScale = new Vector3(scale, scale, scale);
+        Mouth.transform.localPosition = new Vector3(0, pos, .5f);
+
+    }
+}
