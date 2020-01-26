@@ -8,6 +8,7 @@ public class RuleBasedInstructions2 : MonoBehaviour
      * Draw a line from one side and connect it to the other side
      * Then fill up on side of the paper with parallel lines
      * and on the other side, draw a shape
+     * 
      */
 
     public bool rebuild;
