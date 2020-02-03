@@ -71,10 +71,13 @@ public class Interactable : MonoBehaviour
 
     public virtual void Ping(RaycastInteraction raycaster, float click, string whatType){
         gaze = raycaster;
-        if(whatType.Equals(type)){
+
+        if (whatType.Equals(type))
+        {
             ping = true;
             clicked = click;
         }
+
     }
 
     public virtual void HandleEnter(){

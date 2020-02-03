@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaycastInteraction : MonoBehaviour {
     
     [Tooltip("Used to link specific raycasters with interactables")]
-    public string type;
+    public string type = "";
 
     public Vector3 hitPosition { get; set; }
     public Vector3 hitNormal{ get; set; }
@@ -21,11 +21,14 @@ public class RaycastInteraction : MonoBehaviour {
     public Button button;
     float click;
 
+    public Camera camera;
 
 
 	void Start() {
         if (button == null)
             alwaysActive = true;
+        if (camera == null)
+            camera = Camera.main;
 	}
 
 	void Update() {
@@ -38,7 +41,7 @@ public class RaycastInteraction : MonoBehaviour {
             bool hit;
 
             if (useMouse)
-                hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+                hit = Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hitInfo);
             else
             {
                 hit = Physics.Raycast(new Ray(this.transform.position, this.transform.forward), out hitInfo, 1e6f);

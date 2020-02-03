@@ -2,6 +2,7 @@
 {
     Properties
     {
+        _Color("Color",color) = (1,1,1,1)
         _LightColor("Light Color", Color) = (1,1,1,1)
         _DarkColor("Dark Color", Color) = (0.4,0.4,0.4,1)
         _Softness("Softness",float) = .01
@@ -68,7 +69,7 @@
             float _Softness;
 
             float4 _DarkColor;
- 
+            float4 _Color;
 
             float4 frag (v2f i) : SV_Target
             {
@@ -95,7 +96,7 @@
                 // Multiply by the main directional light's intensity and color.
                 float4 light = lerp(_DarkColor,_LightColor,lightIntensity) * _LightColor0;
                
-                return light;
+                return light*_Color;
             }
             ENDCG
         }

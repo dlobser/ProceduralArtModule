@@ -253,6 +253,7 @@ public class MCBlob : MonoBehaviour
             current.y = pnt.y - pb[1];
             current.z = pnt.z - pb[2];
             float mag = current.magnitude;
+
             float pwr = .5f * (1f / (mag * mag * mag)) * pb[3];
             result = result + (current * pwr);
         }
@@ -481,6 +482,7 @@ public class MCBlob : MonoBehaviour
         mesh.triangles = ft;
         mesh.normals = fn;
 
+
         /*For Disco Ball Effect*/
         //mesh.RecalculateNormals();    
 
@@ -503,6 +505,7 @@ public class MCBlob : MonoBehaviour
     /*Regenerate Lattice and Connections, when changing Dimensions of Lattice*/
     public void Regen()
     {
+        MakeBlobs();
         startObjs();
         startEngine();
     }
@@ -510,6 +513,7 @@ public class MCBlob : MonoBehaviour
     //Unity and Sample specific
     void Update()
     {
+        
 		if (inBlobs.Length > 0) {
 
 			//Update FPS and counters every second
@@ -540,7 +544,7 @@ public class MCBlob : MonoBehaviour
     {
         lt = 0f;
 
-        MakeBlobs();
+
         //blobs = new float[5][];
         //blobs[0] = new float[] { .16f, .26f, .16f, .13f };
         //blobs[1] = new float[] { .13f, -.134f, .35f, .12f };
@@ -549,8 +553,8 @@ public class MCBlob : MonoBehaviour
         //blobs[4] = new float[] { -.18f, .125f, .35f, .12f };
 
        // isoLevel = 1.95f;
-
-       Regen();
+        if(inBlobs.Length>0)
+            Regen();
 
 
 

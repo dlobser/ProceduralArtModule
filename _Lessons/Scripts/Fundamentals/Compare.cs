@@ -26,35 +26,39 @@ public class Compare : MonoBehaviour
 
 	void Update()
 	{
-        if (A < B){
-            print("A is less than B");
-        }
-        else if(A!=B){
+        
+        if (A > B){
             print("A is greater than B");
         }
-        else{
-            print("A is equal to B");
+        if (A == B){
+            print("A equals B");
+        }
+        if(A <= B){
+            print("A is less than or equal to B");
+        }
+        if(A < B || A > B){
+            print("A is less than or greater than B");
+        }
+        if(A != B){
+            print("A does not equal B");
+        }
+        if(A == B && B > 10 && A > 10){
+            print("A equals B and B is greater than 10");
         }
 
-        //if (A > B){
-        //    print("A is greater than B");
-        //}
-        //if (A == B){
-        //    print("A equals B");
-        //}
-        //if(A <= B){
-        //    print("A is less than or equal to B");
-        //}
-        //if(A < B || A > B){
-        //    print("A is less than or greater than B");
-        //}
-        //if(A != B){
-        //    print("A does not equal B");
-        //}
-        //if(A == B && B > 10 && A > 10){
-        //    print("A equals B and B is greater than 10");
-        //}
-
+        /*
+         * Visual Studio will complain about comparing 
+         * float values with == 
+         * In some cases you will need to use the .Equals() function
+         * 
+        float a = 1.5f;
+        float b = 1.5f;
+        if (a == b)
+            print("float a = float b");
+        if (a.Equals(b))
+            print("float a = float b");
+        */
+        
         /* 
          * ifs and elses
          * 

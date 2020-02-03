@@ -11,15 +11,14 @@ public class ScaleUpOnStart : MonoBehaviour
     void Awake()
     {
         initScale = this.transform.localScale;
-        GetComponent<MeshRenderer>().enabled = false;
+        this.transform.localScale = Vector3.zero;
     }
 
     void Update()
     {
         if(counter<speed){
             counter += Time.deltaTime;
-            this.transform.localScale = Vector3.Lerp(Vector3.zero, initScale, counter / speed);
+            this.transform.localScale = Vector3.Lerp(Vector3.zero, initScale, Mathf.SmoothStep(0,1,counter / speed));
         }
-        GetComponent<MeshRenderer>().enabled = true;
     }
 }

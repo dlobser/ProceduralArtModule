@@ -12,12 +12,14 @@ public class Variables : MonoBehaviour
     public string stringValue;
     public Vector3 vectorValue;
 
-
-    //I didn't mention double or char because they are less common
-
+    //primitive variables in c#: int, short, long, byte, float, double, char, and boolean.
+    //int, float, bool and string are the most common 
+    //but you may see long, short, byte, double and char in other's scripts
+    //long, short and byte are types of integers
     //Double is similar to float but with more precision (15 or 16 decimal points vs 6 or 7)
+    //char variables hold a sixteen-bit number representing a letter, digit, symbol or control character. 
 
-    //char stores a single character
+    //Vector3 is not a primitive variable but is a 'struct' which is similar to a 'class'
 
     //This is the start function, everything inside it gets called on start
     void Start()
@@ -34,7 +36,7 @@ public class Variables : MonoBehaviour
         print("Booleans are true or false: " + isItTrue + "\n");
         print("Strings are letters, words and sentences: " + stringValue + "\n");
         print("Vectors are special objects which contain 2, 3, or 4 floats: " + vectorValue + "\n");
-        float addedUp = Add(1.0f, 2.0f);
+        float addedUp = Add(floatValue, secondFloatValue);
         print("Functions can do things like add numbers together: " + addedUp + "\n");
 
     }
