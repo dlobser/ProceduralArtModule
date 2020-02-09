@@ -30,8 +30,7 @@ public class CreateObjects : MonoBehaviour
             //things[1] is the second, and so on until the end
             //The command below creates a new thing and assigns it to a slot in the array
             //We make a new Vector for the position and use i to offset the x value
-
-            things[i] = Instantiate(thing, new Vector3(i,0,0) , Quaternion.identity);
+            things[i] = Instantiate(thing);
         }
 
     }

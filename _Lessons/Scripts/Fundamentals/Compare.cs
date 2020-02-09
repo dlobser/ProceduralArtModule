@@ -46,18 +46,18 @@ public class Compare : MonoBehaviour
             print("A equals B and B is greater than 10");
         }
 
-        /*
-         * Visual Studio will complain about comparing 
-         * float values with == 
-         * In some cases you will need to use the .Equals() function
-         * 
-        float a = 1.5f;
-        float b = 1.5f;
-        if (a == b)
-            print("float a = float b");
-        if (a.Equals(b))
-            print("float a = float b");
-        */
+        
+        //Visual Studio will complain about comparing 
+        //float values with == 
+        //In some cases you will need to use the .Equals() function
+
+        //float a = 1.5f;
+        //float b = 1.5f;
+        //if (a == b)
+        //    print("float a = float b");
+        //if (a.Equals(b))
+            //print("float a = float b");
+        
         
         /* 
          * ifs and elses
@@ -66,17 +66,17 @@ public class Compare : MonoBehaviour
          * if it's not less than or greater than it will be equal to
          * if the first if is true the following else statements will
          * not be checked, the final else becomes the default state
-         * 
-        if (A < B){
-            print("A is less than B");
-        }
-        else if (A > B){
-            print("A is greater than B");
-        }
-        else{
-            print("A equals B");
-        }
-        */
+         */
+        //if (A < B){
+        //    print("A is less than B");
+        //}
+        //else if (A > B){
+        //    print("A is greater than B");
+        //}
+        //else{
+        //    print("A equals B");
+        //}
+
 
 	}
 

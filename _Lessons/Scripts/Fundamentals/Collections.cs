@@ -38,6 +38,21 @@ public class Collections : MonoBehaviour
             arrayString += intArray[i] + ", ";
         }
 
+        /*
+         * using foreach and while loops
+         * to do the same thing as the for loop
+         */
+
+        //foreach (int integer in intArray)
+        //    arrayString += integer + ", ";
+
+        //int j = 0;
+        //while(j < intArray.Length){
+        //    arrayString += intArray[j] + ", ";
+        //    j++;
+        //}
+
+
         print(arrayString);
 
         string listString = "";
