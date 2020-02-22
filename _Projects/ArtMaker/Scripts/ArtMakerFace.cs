@@ -9,6 +9,8 @@ namespace Art
         public Transform noses;
         public Transform eyes;
         public Transform mouths;
+        public GameObject head;
+        GameObject _head;
 
         public float mouthHeightMin;
         public float mouthHeightMax;
@@ -33,8 +35,12 @@ namespace Art
         GameObject Nose;
         GameObject Mouth;
 
+
+
         public override void MakeArt()
         {
+            _head = Instantiate(head);
+            _head.transform.parent = root.transform;
 
             if (LeftEye != null)
             {
@@ -45,25 +51,25 @@ namespace Art
             }
 
             LeftEye = new GameObject();
-            LeftEye.transform.parent = root.transform;
+            LeftEye.transform.parent = _head.transform;
             LeftEye.transform.localPosition = Vector3.zero;
             LeftEye.transform.localEulerAngles = Vector3.zero;
             LeftEye.name = "LeftEye";
 
             RightEye = new GameObject();
-            RightEye.transform.parent = root.transform;
+            RightEye.transform.parent = _head.transform;
             RightEye.transform.localPosition = Vector3.zero;
             RightEye.transform.localEulerAngles = Vector3.zero;
             RightEye.name = "RightEye";
 
             Nose = new GameObject();
-            Nose.transform.parent = root.transform;
+            Nose.transform.parent = _head.transform;
             Nose.transform.localPosition = Vector3.zero;
             Nose.transform.localEulerAngles = Vector3.zero;
             Nose.name = "Nose";
 
             Mouth = new GameObject();
-            Mouth.transform.parent = root.transform;
+            Mouth.transform.parent = _head.transform;
             Mouth.transform.localPosition = Vector3.zero;
             Mouth.transform.localEulerAngles = Vector3.zero;
             Mouth.name = "Mouth";
@@ -74,24 +80,24 @@ namespace Art
             float sep = Random.Range(eyeSeparationMin, eyeSeparationMax);
             float rot = Random.Range(eyeRotationMin, eyeRotationMax);
             LeftEye.transform.localScale = new Vector3(scale, scale, scale);
-            LeftEye.transform.localPosition = new Vector3(sep, .25f, .5f);
+            LeftEye.transform.localPosition = new Vector3(sep, .25f, -.5f);
             LeftEye.transform.localEulerAngles = new Vector3(0, 0, rot);
 
             t = Instantiate(eyes.GetChild(randomEye), RightEye.transform);
             RightEye.transform.localScale = new Vector3(scale, scale, scale);
-            RightEye.transform.localPosition = new Vector3(-sep, .25f, .5f);
+            RightEye.transform.localPosition = new Vector3(-sep, .25f, -.5f);
             RightEye.transform.localEulerAngles = new Vector3(0, 0, -rot);
 
             t = Instantiate(noses.GetChild(Random.Range(0, noses.childCount)), Nose.transform);
             scale = Random.Range(noseSizeMin, noseSizeMax);
             Nose.transform.localScale = new Vector3(scale, scale, scale);
-            Nose.transform.localPosition = new Vector3(0, 0, .5f);
+            Nose.transform.localPosition = new Vector3(0, 0, -.5f);
 
             t = Instantiate(mouths.GetChild(Random.Range(0, mouths.childCount)), Mouth.transform);
             scale = Random.Range(mouthSizeMin, mouthSizeMax);
             float pos = Random.Range(mouthHeightMin, mouthHeightMax);
             Mouth.transform.localScale = new Vector3(scale, scale, scale);
-            Mouth.transform.localPosition = new Vector3(0, pos, .5f);
+            Mouth.transform.localPosition = new Vector3(0, pos, -.5f);
 
         }
     }
