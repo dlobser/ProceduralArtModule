@@ -467,6 +467,79 @@ public static class Noise {
 		return sample;
 	}
 
+
+    public static float Noise3D(Vector3 point)
+    {
+        int ix0 = Mathf.FloorToInt(point.x);
+        int iy0 = Mathf.FloorToInt(point.y);
+        int iz0 = Mathf.FloorToInt(point.z);
+        float tx0 = point.x - ix0;
+        float ty0 = point.y - iy0;
+        float tz0 = point.z - iz0;
+        float tx1 = tx0 - 1f;
+        float ty1 = ty0 - 1f;
+        float tz1 = tz0 - 1f;
+        ix0 &= hashMask;
+        iy0 &= hashMask;
+        iz0 &= hashMask;
+        int ix1 = ix0 + 1;
+        int iy1 = iy0 + 1;
+        int iz1 = iz0 + 1;
+
+        int h0 = hash[ix0];
+        int h1 = hash[ix1];
+        int h00 = hash[h0 + iy0];
+        int h10 = hash[h1 + iy0];
+        int h01 = hash[h0 + iy1];
+        int h11 = hash[h1 + iy1];
+        Vector3 g000 = gradients3D[hash[h00 + iz0] & gradientsMask3D];
+        Vector3 g100 = gradients3D[hash[h10 + iz0] & gradientsMask3D];
+        Vector3 g010 = gradients3D[hash[h01 + iz0] & gradientsMask3D];
+        Vector3 g110 = gradients3D[hash[h11 + iz0] & gradientsMask3D];
+        Vector3 g001 = gradients3D[hash[h00 + iz1] & gradientsMask3D];
+        Vector3 g101 = gradients3D[hash[h10 + iz1] & gradientsMask3D];
+        Vector3 g011 = gradients3D[hash[h01 + iz1] & gradientsMask3D];
+        Vector3 g111 = gradients3D[hash[h11 + iz1] & gradientsMask3D];
+
+        float v000 = Dot(g000, tx0, ty0, tz0);
+        float v100 = Dot(g100, tx1, ty0, tz0);
+        float v010 = Dot(g010, tx0, ty1, tz0);
+        float v110 = Dot(g110, tx1, ty1, tz0);
+        float v001 = Dot(g001, tx0, ty0, tz1);
+        float v101 = Dot(g101, tx1, ty0, tz1);
+        float v011 = Dot(g011, tx0, ty1, tz1);
+        float v111 = Dot(g111, tx1, ty1, tz1);
+
+        float dtx = SmoothDerivative(tx0);
+        float dty = SmoothDerivative(ty0);
+        float dtz = SmoothDerivative(tz0);
+        float tx = Smooth(tx0);
+        float ty = Smooth(ty0);
+        float tz = Smooth(tz0);
+
+        float a = v000;
+        float b = v100 - v000;
+        float c = v010 - v000;
+        float d = v001 - v000;
+        float e = v110 - v010 - v100 + v000;
+        float f = v101 - v001 - v100 + v000;
+        float g = v011 - v001 - v010 + v000;
+        float h = v111 - v011 - v101 + v001 - v110 + v010 + v100 - v000;
+
+        Vector3 da = g000;
+        Vector3 db = g100 - g000;
+        Vector3 dc = g010 - g000;
+        Vector3 dd = g001 - g000;
+        Vector3 de = g110 - g010 - g100 + g000;
+        Vector3 df = g101 - g001 - g100 + g000;
+        Vector3 dg = g011 - g001 - g010 + g000;
+        Vector3 dh = g111 - g011 - g101 + g001 - g110 + g010 + g100 - g000;
+
+        NoiseSample sample;
+        sample.value = a + b * tx + (c + e * tx) * ty + (d + f * tx + (g + h * tx) * ty) * tz;
+        return sample.value;
+    }
+
 	public static NoiseSample Sum (NoiseMethod method, Vector3 point, float frequency, int octaves, float lacunarity, float persistence) {
 		NoiseSample sum = method(point, frequency);
 		float amplitude = 1f;
