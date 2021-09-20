@@ -9,7 +9,6 @@ public class Lissajous : MonoBehaviour
     public float SpeedX;
     public float SpeedY;
 
-    public float spiral;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +23,7 @@ public class Lissajous : MonoBehaviour
         counterY += SpeedY;
 
         this.transform.position = new Vector3(
-        Mathf.Sin(counterX) + Mathf.Sin(counterY)*spiral, Mathf.Cos(counterX) + Mathf.Cos(counterY)*spiral, 0);
+        Mathf.Sin(counterX), Mathf.Cos(counterY), 0);
 
     }
 }
