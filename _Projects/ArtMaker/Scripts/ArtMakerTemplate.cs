@@ -9,7 +9,7 @@ namespace Art
 
         public GameObject root { get; set; }
 
-        void Update()
+        void LateUpdate()
         {
             if (Input.GetKey(KeyCode.R))
                 rebuild = true;
@@ -30,6 +30,11 @@ namespace Art
             root = new GameObject();
             root.name = "ArtMaker_Root";
             MakeArt();
+        }
+
+        public void AddToRoot(Transform t)
+        {
+            t.transform.parent = root.transform;
         }
 
         public virtual void MakeArt()

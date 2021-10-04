@@ -17,15 +17,7 @@ namespace Art
         int count;
         Vector3[] positions;
         GameObject container;
-        ArtSquare artSquare;
         Camera cam;
-
-        void Start()
-        {
-            artSquare = FindObjectOfType<ArtSquare>();
-            if (artSquare == null)
-                Debug.LogWarning("'ArtSquare' component missing");
-        }
 
         void Update()
         {
