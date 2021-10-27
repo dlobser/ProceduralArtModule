@@ -16,10 +16,10 @@ public class TextureToSculpture : MonoBehaviour
             for (int j = 0; j < texture2D.height; j+=detailY)
             {
                 Color c = texture2D.GetPixel(i,j);
-                print(c);
                 GameObject p = Instantiate(pixel);
                 p.transform.localPosition = new Vector3(i/detailX,j/detailY,0);
                 p.GetComponent<MeshRenderer>().material.color = c;
+                p.transform.localScale = new Vector3(1,1,c.r);
             }
         }
     }
