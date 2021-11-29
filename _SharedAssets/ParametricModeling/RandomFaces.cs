@@ -24,6 +24,9 @@ public class RandomFaces : MonoBehaviour {
         {
             triangles[i] = (int)Random.Range(0, 900);
         }
+
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
     }
 
     // Update is called once per frame

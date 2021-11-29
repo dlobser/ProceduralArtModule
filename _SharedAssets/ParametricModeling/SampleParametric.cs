@@ -35,6 +35,12 @@ public class SampleParametric : MonoBehaviour {
             case 4:
                 GetComponent<MeshFilter>().mesh = Grid.Generate(uDivs, vDivs, WavyPath);
                 break;
+            case 5:
+                GetComponent<MeshFilter>().mesh = Grid.Generate(uDivs, vDivs, WavyPlane);
+                break;
+            case 6:
+                GetComponent<MeshFilter>().mesh = Grid.Generate(uDivs, vDivs, NoisyPlane);
+                break;
             default: break;
         }
         GetComponent<MeshFilter>().mesh.RecalculateNormals();
@@ -52,6 +58,14 @@ public class SampleParametric : MonoBehaviour {
 
 	Vector3 Plane(float u, float v){
         return new Vector3(u, v, 0);
+    }
+
+    Vector3 WavyPlane(float u, float v){
+        return new Vector3(u, v, Mathf.Sin(v*Mathf.PI*10));
+    }
+
+    Vector3 NoisyPlane(float u, float v){
+        return new Vector3(u, Mathf.PerlinNoise(u*5,v*5), v);
     }
 
     Vector3 Sphere(float u, float v)
